@@ -1,0 +1,64 @@
+################## SONAR QUESTIONS ##################:
+
+1. minimum 20cm, maximum 207cm
+
+2. 22.5D gave 46cm (100%) instead of 50cm.
+   20.0D gave 49cm (100%) instead of 50cm.
+   15.0D gave 49cm (100%) instead of 50cm. 
+   10.0D gave us exactly 50cm.
+
+3. 20cm gives 21cm, the rest is perfect.
+
+4. 1sdfdsaf00% perfect after careful placement.
+
+5. depends on the depth.
+
+################## SONAR INVESTIGATION FINDINGS ################:
+
+############# 207 TO 255  #################
+the rest is not accurate being at its best 36% correct.
+220cm : 221cm ()
+250cm : 251cm ()
+252cm : 253cm ()
+253cm : 254cm ()
+254cm : 255cm ()
+255cm : 255cm ()
+256cm : 255cm ()
+260cm : 255cm ()
+270cm : 255cm ()
+
+############## 100 TO 207 ##################   
+100cm : 100cm
+130cm : 130cm 
+200cm : 203cm (202 26%, 203 28%, 255 46% with time.sleep(0.05) and we go t$
+207cm : 209 (+2) by 93%
+
+############### 21 TO 50   ##################
+50cm : 51cm (+1)
+30cm : 31cm (+1)
+25cm : 25cm 
+23cm : 24m (+1)
+21cm : 21cm 
+
+############### BELOW 20cm ################### 
+20cm : 21cm (+1)
+19cm : 21cm (+2)
+18cm : 21cm (+3)
+17cm : 20cm (+3)
+16cm : 20cm (+4)
+15cm : 19cm (+4)
+14cm : 18cm (+4)
+13cm : 17cm (+4)
+12cm : 16cm (+4)
+11cm : 15cm (+4)
+10cm : 14cm (+4)
+9cm  : 12cm ()
+8cm  : 9cm ()
+7cm  : 9cm ()
+6cm  : 8cm ()
+5cm  : 8cm (+3)
+4cm  : 4cm (25% -> 3, 75% -> 4)
+3cm  : 6cm (+3)
+2cm  : 4cm (+3)
+1cm  : 4cm (+3)
+0cm  : 255cm

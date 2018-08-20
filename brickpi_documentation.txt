@@ -1,0 +1,581 @@
+Help on module brickpi:
+
+NAME
+    brickpi
+
+FILE
+    /usr/local/lib/python2.7/dist-packages/brickpi.so
+
+CLASSES
+    Boost.Python.enum(__builtin__.int)
+        SensorType
+    Boost.Python.instance(__builtin__.object)
+        Interface
+        vector_double
+        vector_timestamp
+        vector_uchar
+    
+     class Interface(Boost.Python.instance)
+     |  BrickPi Interface class.
+     |  We mirror the functionalities provided by the manufacturer in C++ style 
+     |  and additionally provide (somewhat) low-level speed and position control
+     |  for the motors.
+     |  
+     |  Method resolution order:
+     |      Interface
+     |      Boost.Python.instance
+     |      __builtin__.object
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(...)
+     |  
+     |  __reduce__ = <unnamed Boost.Python function>(...)
+     |  
+     |  emergencyStop(...)
+     |      Immediately stop all motors, stop the polling and control thread (bad
+     |      for the hardware).
+     |      
+     |      :returns: true on success
+     |  
+     |  getMotorAngle(...)
+     |      Get the current motor angle.
+     |      
+     |      :param motorPort: list of motor ports [0..3]
+     |      :returns: tuple of angle [rad] and timestamp [nsec], empty on failure
+     |  
+     |  getMotorAngleReferences(...)
+     |      Get the currently set motor angle references. Note: you must set 
+     |      reference rotation speed(s) before.
+     |      
+     |      :param motorPorts: list of motor ports [0..3]
+     |      :returns: list of reference angles [rad], empty on failure
+     |  
+     |  getMotorAngles(...)
+     |      Get the current motor angles.
+     |      
+     |      :param motorPorts: list of motor ports [0..3]
+     |      :returns: list of tuples of angle [rad] and timestamp [nsec], empty on failure
+     |  
+     |  getSensorValue(...)
+     |      Read a sensor value (thread-safe). 
+     |      
+     |      :param sensorPort: sensor port [0..4]
+     |      :returns: tuple of sensor value and timstamp [nsec] or empty on failure
+     increaseMotorAngleReference(...)
+     |      Put motors to position control mode and increase the reference angle
+     |      that should be reached.
+     |      
+     |      :param motorPort: motor port [0..3]
+     |      :param angleReferenceIncrease: angle reference increase [rad]
+     |      :returns: true on success
+     |      
+     |      Put motors to position control mode and increase the reference angle
+     |      that should be reached, while not exceeding a maximum rotation speed.
+     |      
+     |      :param motorPort: motor port [0..3]
+     |      :param angleReferenceIncrease: angle reference increase [rad]
+     |      :param rotationSpeedReference: (maximum) rotation speed [rad/s]
+     |      :returns: true on success
+     |  
+     |  increaseMotorAngleReferences(...)
+     |      Put motors to position control mode and increase the reference angle
+     |      that should be reached.
+     |      
+     |      :param motorPorts: list of motor ports [0..3]
+     |      :param angleReferenceIncreases: list of angle reference increases [rad]
+     |      :returns: true on success
+     |      
+     |      Put motors to position control mode and increase the reference angle
+     |      that should be reached, while not exceeding a maximum rotation speed.
+     |      
+     |      :param motorPorts: list of motor ports [0..3]
+     |      :param angleReferenceIncreases: list of angle reference increases [rad]
+     |      :param rotationSpeedReference: list of (maximum) rotation speed [rad/s]
+     |      :returns: true on success
+     |  
+     |  initialize(...)
+     |      This starts a separate thread that continuously polls the activated 
+     |      sensors as well as controls the motors that were started.
+     |      
+     |      :returns: true on success
+     |  
+     |  motorAngleReferenceReached(...)
+     |      Determine, if a motor has reached its reference angle. Note: 
+     |      you must set a reference angle before.
+     |      
+     |      :param motorPort: motor port [0..3]
+     |      :returns: true, if reached
+     |  
+     |  motorAngleReferencesReached(...)
+     |      Determine, if motors have reached their reference angles. Note: 
+     |      you must set reference angles before.
+     |      
+     |      :param motorPorts: list of motor ports [0..3]
+     |      :returns: true, if all angles have reached their references
+     |  
+     |  motorDisable(...)
+     |      Disable individual motor.
+     |      
+     |      :param motorPort: motor port [0..3]
+     |      :returns: true on success
+     |  
+     |  motorEnable(...)
+     |      Enable individual motor.
+     |      
+     |      :param motorPort: motor port [0..3]
+     |      :returns: true on success
+     motorRotationSpeedReferenceReached(...)
+     |      Checks, if the previously set rotation speed reference was reached.
+     |      Note: you must set reference rotation speed(s) before.
+     |      
+     |      :returns: true on success
+     |  
+     |  sensorDisable(...)
+     |      Disable individual sensor with.
+     |      
+     |      :param sensorPort: sensor port [0..4]
+     |      :returns: true on success
+     |  
+     |  sensorEnable(...)
+     |      Enable individual sensor.
+     |      
+     |      :param sensorPort: sensor port [0..4]
+     |      :returns: true on success
+     |  
+     |  setMotorAngleControllerParameters(...)
+     |      Set the angle controller parameters for a motor.
+     |      
+     |      :returns: true on success
+     |  
+     |  setMotorAngleReference(...)
+     |      Put a motor to position control mode and set a reference angle that
+     |      should be reached.
+     |      
+     |      :param motorPort: motor port [0..3]
+     |      :param angleReference: angle reference [rad]
+     |      :returns: true on success
+     |      
+     |      Put a motor to position control mode and set a reference angle that
+     |      should be reached, while not exceeding a maximum rotation speed.
+     |      
+     |      :param motorPort: motorPort [0..3]
+     |      :param angleReference: angle reference [rad]
+     |      :param rotationSpeedReference: (maximum) rotation speed [rad/s]
+     |      :returns: true on success
+     |  
+     |  setMotorAngleReferences(...)
+     |      Put motors to position control mode and set a reference angle that
+     |      should be reached.
+     |      
+     |      :param motorPorts: list of motor ports [0..3]
+     |      :param angleReference: corresp. list of angle references [rad]
+     |      :returns: true on success
+     |      
+     |      Put motors to position control mode and set a reference angle that
+     |      should be reached.
+     |      
+     |      :param motorPorts: list of motor ports [0..3]
+     |      :param angleReference: corresp. list of angle references [rad]
+     |      :param rotationSpeedReferences: list of (maximum) rotation speeds [rad/s]
+     |      :returns: true on success
+     |  
+     |  setMotorPwm(...)
+     |      Puts the motor motorPort into manual control mode and directly appliesthe PWM value.
+     |      
+     |      :param pwm: PWM value [-255,255]
+     |      :returns true, if successful.
+     |  
+     |  setMotorRotationSpeedReference(...)
+     |      Put a motor to speed control mode and set its rotation speed
+     |      reference. You may want to check with 
+     |      bool motorRotationSpeedReferenceReached(motorPort), when the reference is 
+     |      reached.
+     |      
+     |      :param motorPorts: list of motor ports [0..3]
+     |      :param rotationSpeedReferences: list of rotation speed references [rad/s]
+     |      :returns: true on success
+     |  
+     |  startLogging(...)
+     |      Start logging of timestamp, filtered angle references and actual angles.
+     |      
+     |      :param filename: full path to your logfile
+     |      :returns true on succes
+     |  
+     |  stopLogging(...)
+     |      Stop logging of timestamp, filtered angle references and actual angles.
+     |      
+     |      :returns true on succes
+     |  
+     |  terminate(...)
+     |      Softly stop all motors and sensors, stop the polling and control thread.
+     |      
+     |      :returns: true on success
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  MotorAngleControllerParameters = <class 'brickpi.MotorAngleControllerP...
+     |      This is a simple struct to store all motor parameters relevant
+     |      for controlling it.
+     |  
+     |  PidParameters = <class 'brickpi.PidParameters'>
+     |      This is a simple struct to store all PID parameters
+     |  
+     |  __instance_size__ = 1400
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from Boost.Python.instance:
+     |  
+     |  __dict__
+     |  
+     |  __weakref__
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from Boost.Python.instance:
+     |  
+     |  __new__ = <built-in method __new__ of Boost.Python.class object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+    
+     class SensorType(Boost.Python.enum)
+     |  Method resolution order:
+     |      SensorType
+     |      Boost.Python.enum
+     |      __builtin__.int
+     |      __builtin__.object
+     |  
+     |  Data and other attributes defined here:
+     |  
+     |  SENSOR_NONE = brickpi.SensorType.SENSOR_NONE
+     |  
+     |  SENSOR_TOUCH = brickpi.SensorType.SENSOR_TOUCH
+     |  
+     |  SENSOR_ULTRASONIC = brickpi.SensorType.SENSOR_ULTRASONIC
+     |  
+     |  names = {'SENSOR_NONE': brickpi.SensorType.SENSOR_NONE, 'SENSOR_TOUCH'...
+     |  
+     |  values = {0: brickpi.SensorType.SENSOR_ULTRASONIC, 1: brickpi.SensorTy...
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from Boost.Python.enum:
+     |  
+     |  __repr__(...)
+     |      x.__repr__() <==> repr(x)
+     |  
+     |  __str__(...)
+     |      x.__str__() <==> str(x)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from Boost.Python.enum:
+     |  
+     |  name
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from __builtin__.int:
+     |  
+     |  __abs__(...)
+     |      x.__abs__() <==> abs(x)
+     |  
+     |  __add__(...)
+     |      x.__add__(y) <==> x+y
+     |  
+     |  __and__(...)
+     |      x.__and__(y) <==> x&y
+     |  
+     |  __cmp__(...)
+     |      x.__cmp__(y) <==> cmp(x,y)
+     |  
+     |  __coerce__(...)
+     |      x.__coerce__(y) <==> coerce(x, y)
+     |  
+     |  __div__(...)
+     |      x.__div__(y) <==> x/y
+     |  
+     |  __divmod__(...)
+     |      x.__divmod__(y) <==> divmod(x, y)
+     |  
+     |  __float__(...)
+     |      x.__float__() <==> float(x)
+     |  
+     |  __floordiv__(...)
+     |      x.__floordiv__(y) <==> x//y
+     |  
+     |  __format__(...)
+     |  
+     |  __getattribute__(...)
+     |      x.__getattribute__('name') <==> x.name
+     |  
+     |  __getnewargs__(...)
+     |  
+     |  __hash__(...)
+     |      x.__hash__() <==> hash(x)
+     |  
+     |  __hex__(...)
+     |      x.__hex__() <==> hex(x)
+     |  
+     |  __index__(...)
+     |      x[y:z] <==> x[y.__index__():z.__index__()]
+     |  
+     |  __int__(...)
+     |      x.__int__() <==> int(x)
+     |  
+     |  __invert__(...)
+     |      x.__invert__() <==> ~x
+     |  
+     |  __long__(...)
+     |      x.__long__() <==> long(x)
+     |  
+     |  __lshift__(...)
+     |      x.__lshift__(y) <==> x<<y
+     |  
+     |  __mod__(...)
+     |      x.__mod__(y) <==> x%y
+     |  
+     |  __mul__(...)
+     |      x.__mul__(y) <==> x*y
+     |  
+     |  __neg__(...)
+     |      x.__neg__() <==> -x
+     |  
+     |  __nonzero__(...)
+     |      x.__nonzero__() <==> x != 0
+     |  
+     |  __oct__(...)
+     |      x.__oct__() <==> oct(x)
+     |  
+     |  __or__(...)
+     |      x.__or__(y) <==> x|y
+     |  
+     |  __pos__(...)
+     |      x.__pos__() <==> +x
+     |  
+     |  __pow__(...)
+     |      x.__pow__(y[, z]) <==> pow(x, y[, z])
+     |  
+     |  __radd__(...)
+     |      x.__radd__(y) <==> y+x
+     |  
+     |  __rand__(...)
+     |      x.__rand__(y) <==> y&x
+     |  
+     |  __rdiv__(...)
+     |      x.__rdiv__(y) <==> y/x
+     |  
+     |  __rdivmod__(...)
+     |      x.__rdivmod__(y) <==> divmod(y, x)
+     |  
+     |  __rfloordiv__(...)
+     |      x.__rfloordiv__(y) <==> y//x
+     |  
+     |  __rlshift__(...)
+     |      x.__rlshift__(y) <==> y<<x
+     |  
+     |  __rmod__(...)
+     |      x.__rmod__(y) <==> y%x
+     |  
+     |  __rmul__(...)
+     |      x.__rmul__(y) <==> y*x
+     |  
+     |  __ror__(...)
+     |      x.__ror__(y) <==> y|x
+     |  
+     |  __rpow__(...)
+     |      y.__rpow__(x[, z]) <==> pow(x, y[, z])
+     |  
+     |  __rrshift__(...)
+     |      x.__rrshift__(y) <==> y>>x
+     |  
+     |  __rshift__(...)
+     |      x.__rshift__(y) <==> x>>y
+     |  
+     |  __rsub__(...)
+     |      x.__rsub__(y) <==> y-x
+     |  
+     |  __rtruediv__(...)
+     |      x.__rtruediv__(y) <==> y/x
+     |  
+     |  __rxor__(...)
+     |      x.__rxor__(y) <==> y^x
+     |  
+     |  __sub__(...)
+     |      x.__sub__(y) <==> x-y
+     |  
+     |  __truediv__(...)
+     |      x.__truediv__(y) <==> x/y
+     |  
+     |  __trunc__(...)
+     |      Truncating an Integral returns itself.
+     |  
+     |  __xor__(...)
+     |      x.__xor__(y) <==> x^y
+     |  
+     |  bit_length(...)
+     |      int.bit_length() -> int
+     |      
+     |      Number of bits necessary to represent self in binary.
+     |      >>> bin(37)
+     |      '0b100101'
+     |      >>> (37).bit_length()
+     |      6
+     |  
+     |  conjugate(...)
+     |      Returns self, the complex conjugate of any int.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from __builtin__.int:
+     |  
+     |  denominator
+     |      the denominator of a rational number in lowest terms
+     |  
+     |  imag
+     |      the imaginary part of a complex number
+     |  
+     |  numerator
+     |      the numerator of a rational number in lowest terms
+     |  
+     |  real
+     |      the real part of a complex number
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from __builtin__.int:
+     |  
+     |  __new__ = <built-in method __new__ of type object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+    
+     class vector_double(Boost.Python.instance)
+     |  Method resolution order:
+     |      vector_double
+     |      Boost.Python.instance
+     |      __builtin__.object
+     |  
+     |  Methods defined here:
+     |  
+     |  __contains__(...)
+     |  
+     |  __delitem__(...)
+     |  
+     |  __getitem__(...)
+     |  
+     |  __init__(...)
+     |  
+     |  __iter__(...)
+     |  
+     |  __len__(...)
+     |  
+     |  __reduce__ = <unnamed Boost.Python function>(...)
+     |  
+     |  __setitem__(...)
+     |  
+     |  append(...)
+     |  
+     |  extend(...)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  __instance_size__ = 20
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from Boost.Python.instance:
+     |  
+     |  __dict__
+     |  
+     |  __weakref__
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from Boost.Python.instance:
+     |  
+     |  __new__ = <built-in method __new__ of Boost.Python.class object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+    
+     class vector_timestamp(Boost.Python.instance)
+     |  Method resolution order:
+     |      vector_timestamp
+     |      Boost.Python.instance
+     |      __builtin__.object
+     |  
+     |  Methods defined here:
+     |  
+     |  __contains__(...)
+     |  
+     |  __delitem__(...)
+     |  
+     |  __getitem__(...)
+     |  
+     |  __init__(...)
+     |  
+     |  __iter__(...)
+     |  
+     |  __len__(...)
+     |  __reduce__ = <unnamed Boost.Python function>(...)
+     |  
+     |  __setitem__(...)
+     |  
+     |  append(...)
+     |  
+     |  extend(...)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  __instance_size__ = 20
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from Boost.Python.instance:
+     |  
+     |  __dict__
+     |  
+     |  __weakref__
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from Boost.Python.instance:
+     |  
+     |  __new__ = <built-in method __new__ of Boost.Python.class object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+    
+     class vector_uchar(Boost.Python.instance)
+     |  Method resolution order:
+     |      vector_uchar
+     |      Boost.Python.instance
+     |      __builtin__.object
+     |  
+     |  Methods defined here:
+     |  
+     |  __contains__(...)
+     |  
+     |  __delitem__(...)
+     |  
+     |  __getitem__(...)
+     |  
+     |  __init__(...)
+     |  
+     |  __iter__(...)
+     |  
+     |  __len__(...)
+     |  
+     |  __reduce__ = <unnamed Boost.Python function>(...)
+     |  
+     |  __setitem__(...)
+     |  
+     |  append(...)
+     |  
+     |  extend(...)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  __instance_size__ = 20
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from Boost.Python.instance:
+     |  
+     |  __dict__
+     |  __weakref__
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from Boost.Python.instance:
+     |  
+     |  __new__ = <built-in method __new__ of Boost.Python.class object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+
+
+
