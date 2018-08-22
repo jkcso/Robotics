@@ -62,3 +62,6 @@ SLAM algorithms are tailored to the available resources, hence not aimed at perf
 
 #### Path Planning Challenge ####
 The course always finishes with a competition where the groups compete to build and program the robot which can most effectively complete a certain challenge against the clock.
+
+## Note
+Part of my work is intentionally broken or misleading to avoid disrespectful people from copying and pasting.
